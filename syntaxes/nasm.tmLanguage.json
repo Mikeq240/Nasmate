@@ -1,0 +1,47 @@
+{
+    "scopeName": "source.asm",
+    "patterns": [
+        {
+            "match": "\\b(mov|lea|push|pop|call|ret|jmp|je|jne|jg|jl|jge|jle|ja|jb|jz|jnz|jo|jno|js|jns|jc|jnc|add|sub|mul|imul|div|idiv|inc|dec|neg|cmp|test|adc|sbb|and|or|xor|not|shl|shr|sal|sar|rol|ror|rcl|rcr|clc|stc|cmc|cli|sti|cld|std|int|iret|syscall|sysret|nop|hlt|pause)\\b",
+            "name": "keyword.control.asm"
+        },
+        {
+            "match": "\\b(rax|rbx|rcx|rdx|rsi|rdi|rsp|rbp|r8|r9|r10|r11|r12|r13|r14|r15|eax|ebx|ecx|edx|esi|edi|esp|ebp|ax|bx|cx|dx|si|di|sp|bp|al|bl|cl|dl|ah|bh|ch|dh|spl|bpl|sil|dil|r8d|r9d|r10d|r11d|r12d|r13d|r14d|r15d|r8w|r9w|r10w|r11w|r12w|r13w|r14w|r15w|r8b|r9b|r10b|r11b|r12b|r13b|r14b|r15b)\\b",
+            "name": "variable.register.asm"
+        },
+        {
+            "match": "\\b(section|global|extern|equ|db|dw|dd|dq|resb|resw|resd|resq|times|align|org|segment|end|byte|word|dword|qword|tbyte|proc|endp|if|else|endif|repeat|until|while|align|alignb|alignw|alignd|alignq|db|dw|dd|dq|resb|resw|resd|resq|equ|macro|endm|include|incbin|assert)\\b",
+            "name": "keyword.other.directive.asm"
+        },
+        {
+            "match": "\\b(data|text|bss|rodata|data|_start|reloc|code)\\b",
+            "name": "entity.name.section.asm" 
+        },
+        {
+            "match": "\\b(\\w+)\\s*:", 
+            "captures": {
+                "1": { "name": "entity.name.label.asm" }
+            }
+        },        
+        {
+            "match": "\"[^\"]*\"|'[^']*'",
+            "name": "string.quoted.asm"
+        },
+        {
+            "match": "\\b($|0x[0-9a-fA-F]+|[0-9a-fA-F]+h|[01]+b|[0-9]+|$)\\b",
+            "name": "constant.numeric.asm"
+        },
+        {
+            "match": ";.*$",
+            "name": "comment.line.asm"
+        },
+        {
+          "match": ",",
+          "name": "seperator"
+        },
+        {
+            "match": ",",
+            "name": "seperator"
+        }
+    ]
+}

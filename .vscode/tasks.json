@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build",
+        "type": "shell",
+        "command": "nasm -f elf64 ${file} -o ${fileBasenameNoExtension}.o && ld ${fileBasenameNoExtension}.o -o ${fileBasenameNoExtension}",
+        "group": { "kind": "build", "isDefault": true }
+      }
+    ]
+  }

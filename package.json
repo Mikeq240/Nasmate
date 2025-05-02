@@ -1,0 +1,72 @@
+{
+    "name": "nasm-extention",
+    "displayName": "nasm_extention",
+    "publisher": "MikeLok",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.54.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./extension.js",
+    "scripts": {
+        "compile": "webpack --mode production",
+        "watch": "webpack --mode development --watch",
+        "package": "npx vsce package",
+        "start": "npm run compile"
+    },
+    "contributes": {
+        "languages": [
+            {
+                "id": "nasm",
+                "aliases": [
+                    "NASM",
+                    "Assembly"
+                ],
+                "extensions": [
+                    ".asm",
+                    ".nasm"
+                ],
+                "properties": {
+                    "nasm-extension.enableCustomColors": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Enable custom syntax highlighting colors for NASM"
+                    }
+                },
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "nasm",
+                "path": "./snippets/nasm.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "nasm",
+                "scopeName": "source.asm",
+                "path": "./syntaxes/nasm.tmLanguage.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.10",
+        "@types/node": "20.x",
+        "@types/vscode": "^1.54.0",
+        "@vscode/test-cli": "^0.0.10",
+        "@vscode/test-electron": "^2.5.2",
+        "eslint": "^9.25.1",
+        "webpack": "^5.99.7",
+        "webpack-cli": "^6.0.1"
+    },
+    "dependencies": {
+        "axios": "^1.9.0",
+        "fast-xml-parser": "^5.2.1",
+        "json-schema-validator": "^1.1.0"
+    }
+}

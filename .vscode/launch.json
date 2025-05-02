@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build NASM",
+            "type": "shell",
+            "command": "nasm -f elf64 ${file} -o ${fileBasenameNoExtension}.o && ld ${fileBasenameNoExtension}.o -o ${fileBasenameNoExtension}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Compile and link NASM file"
+        },
+        {
+            "label": "Run NASM",
+            "type": "shell",
+            "command": "${workspaceFolder}/${fileBasenameNoExtension}",
+            "group": "none",
+            "dependsOn": ["Build NASM"],
+            "problemMatcher": [],
+            "detail": "Run the compiled NASM program"
+        }
+    ]
+}

@@ -1,0 +1,221 @@
+{
+  "Hello World": {
+    "prefix": "hello",
+    "body": [
+      "section .data",
+      "    msg db \"Hello, world!\", 0xA",
+      "    len equ $ - msg",
+      "",
+      "section .text",
+      "    global _start",
+      "",
+      "_start:",
+      "    mov eax, 4          ; sys_write",
+      "    mov ebx, 1          ; stdout",
+      "    mov ecx, msg",
+      "    mov edx, len",
+      "    int 0x80",
+      "",
+      "    mov eax, 1          ; sys_exit",
+      "    xor ebx, ebx",
+      "    int 0x80"
+    ],
+    "description": "Hello World using Linux syscalls"
+  },
+  "Print Character": {
+    "prefix": "putchar",
+    "body": [
+      "mov eax, 4",
+      "mov ebx, 1",
+      "mov ecx, char",
+      "mov edx, 1",
+      "int 0x80",
+      "",
+      "char db '${1:X}', 0"
+    ],
+    "description": "Print a single character to stdout"
+  },
+  "Program Entry Point": {
+    "prefix": "entry",
+    "body": [
+      "section .text",
+      "    global _start",
+      "",
+      "_start:"
+    ],
+    "description": "Boilerplate for _start"
+  },
+  "Exit Program": {
+    "prefix": "exit",
+    "body": [
+      "mov eax, 1",
+      "xor ebx, ebx",
+      "int 0x80"
+    ],
+    "description": "Exit program with return code 0"
+  },
+  "Declare Integer Variable": {
+    "prefix": "intvar",
+    "body": [
+      "${1:name} dd ${2:0}"
+    ],
+    "description": "Declare a 32-bit integer variable"
+  },
+  "Read Integer (Linux)": {
+    "prefix": "readint",
+    "body": [
+      "mov eax, 3",
+      "mov ebx, 0",
+      "mov ecx, buffer",
+      "mov edx, 10",
+      "int 0x80",
+      "",
+      "buffer times 10 db 0"
+    ],
+    "description": "Read input from stdin into buffer"
+  },
+  "Loop Template": {
+    "prefix": "loop",
+    "body": [
+      "mov ecx, ${1:count}",
+      "loop_start:",
+      "    ; loop body",
+      "    loop loop_start"
+    ],
+    "description": "ECX-based loop structure"
+  },
+  "If Condition": {
+    "prefix": "ifcmp",
+    "body": [
+      "cmp ${1:val1}, ${2:val2}",
+      "je ${3:label_true}",
+      "jmp ${4:label_false}"
+    ],
+    "description": "Conditional jump example (if-else logic)"
+  },
+  "Function Template": {
+    "prefix": "func",
+    "body": [
+      "${1:funcname}:",
+      "    push ebp",
+      "    mov ebp, esp",
+      "    ; function body",
+      "    mov esp, ebp",
+      "    pop ebp",
+      "    ret"
+    ],
+    "description": "Assembly function template with stack frame"
+  },
+  "Macro Definition": {
+    "prefix": "macro",
+    "body": [
+      "%macro ${1:name} ${2:nargs}",
+      "    ${3:; macro body}",
+      "%endmacro"
+    ],
+    "description": "Define a reusable NASM macro"
+  },
+  "Variable with Length (Auto Mirror)": {
+    "prefix": "varlen",
+    "body": [
+      "${1:var} db 0",
+      "${1}-len equ $ - ${1}"
+    ],
+    "description": "Declare variable with mirrored name and length"
+  },
+  "clear": {
+    "prefix": "clear",
+    "body": [
+      "xor ${1}, ${1}"
+    ],
+    "description": "Clear (zero out) a register"
+  },
+  "exit": {
+    "prefix": "exit",
+    "body": [
+      "mov eax, 1",
+      "xor ebx, ebx",
+      "int 0x80"
+    ],
+    "description": "Exit the program"
+  },
+  "print": {
+    "prefix": "print",
+    "body": [
+      "mov eax, 4",
+      "mov ebx, 1",
+      "mov ecx, ${1}",
+      "mov edx, ${1}_len",
+      "int 0x80"
+    ],
+    "description": "Print a string"
+  },
+  "read": {
+    "prefix": "read",
+    "body": [
+      "mov eax, 3",
+      "mov ebx, 0",
+      "mov ecx, ${1}",
+      "mov edx, ${2}",
+      "int 0x80"
+    ],
+    "description": "Read input from stdin"
+  },
+  "define_var": {
+    "prefix": "define_var",
+    "body": [
+      "${1} db ${2}",
+      "${1}_len equ $ - ${1}"
+    ],
+    "description": "Define variable with auto length"
+  },
+  "new_line": {
+    "prefix": "new_line",
+    "body": [
+      "mov eax, 4",
+      "mov ebx, 1",
+      "mov ecx, newline",
+      "mov edx, 1",
+      "int 0x80"
+    ],
+    "description": "Print a newline"
+  },
+  "wait_key": {
+    "prefix": "wait_key",
+    "body": [
+      "mov eax, 3",
+      "mov ebx, 0",
+      "mov ecx, ${1}",
+      "mov edx, ${2}",
+      "int 0x80"
+    ],
+    "description": "Wait for one key press"
+  },
+  "set_syscall": {
+    "prefix": "set_syscall",
+    "body": [
+      "mov eax, ${1}",
+      "mov ebx, ${2}",
+      "mov ecx, ${3}",
+      "mov edx, ${4}"
+    ],
+    "description": "Quick syscall setup"
+  },
+  "label": {
+    "prefix": "label",
+    "body": [
+      "${1}:",
+      "; ${2}"
+    ],
+    "description": "Add a label with a comment"
+  },
+  "syscall": {
+    "prefix": "syscall",
+    "body": [
+      "int 0x80"
+    ],
+    "description": "General syscall wrapper (Linux)"
+  }
+  
+  
+}

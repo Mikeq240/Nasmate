@@ -1,0 +1,10 @@
+{
+    "mov": "Copies the data from the source operand to the destination operand.",
+    "add": "Adds the source operand to the destination operand and stores the result in the destination.",
+    "sub": "Subtracts the source operand from the destination operand and stores the result in the destination.",
+    "jmp": "Unconditionally jumps to the specified address.",
+    "call": "Calls a subroutine.",
+    "ret": "Returns from a subroutine.",
+    "push": "Pushes a value onto the stack.",
+    "pop": "Pops a value from the stack."
+}

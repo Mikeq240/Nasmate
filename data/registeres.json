@@ -1,0 +1,10 @@
+{
+    "eax": "Accumulator register, used for arithmetic operations.",
+    "ebx": "Base register, often used as a pointer to data.",
+    "ecx": "Counter register, used in loop operations.",
+    "edx": "Data register, used in I/O operations.",
+    "esi": "Source index register, used in string operations.",
+    "edi": "Destination index register, used in string operations.",
+    "esp": "Stack pointer register, points to the top of the stack.",
+    "ebp": "Base pointer register, points to the base of the stack frame."
+}
